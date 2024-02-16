@@ -1,0 +1,16 @@
+{
+  "name": "kpu-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "dependencies": {
+    "axios": "^1.6.7"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
