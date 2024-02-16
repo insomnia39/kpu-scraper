@@ -142,7 +142,7 @@ async function getAllLocations() {
             }
         }
 
-        saveFile(province, `./locations/${getTodayDate()}/${province.nama}.json`);
+        saveFile(province, `./locations/${province.nama}.json`);
     }
 }
 
@@ -176,7 +176,7 @@ function openJson(title) {
 async function getAllVoteData() {
     const provinces = openJson(`./provinces.json`);
     for (let province of provinces) {
-        const location = openJson(`./locations/${getTodayDate()}/${province.nama}.json`);
+        const location = openJson(`./locations/${province.nama}.json`);
         const tpssData = getLastChildren(location);
         const subTpssData = splitArrayIntoSubarrays(tpssData, 300);
         const finalTpssData = [];
