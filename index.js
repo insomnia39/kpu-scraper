@@ -182,6 +182,7 @@ async function getAllVoteData() {
         const finalTpssData = [];
         let i = 0;
         for (let locations of subTpssData) {
+            let errors = [];
             let totalRetry = 0;
             const limitRetry = 10;
             while (totalRetry < limitRetry) {
@@ -192,8 +193,13 @@ async function getAllVoteData() {
                     console.log(`${province.nama} : ${calculatePercentage(++i, subTpssData.length)}`);
                     break;
                 } catch (e) {
+                    errors.push(e);
                     console.log(`retry(${++totalRetry})`);
                 }
+            }
+            if (totalRetry === limitRetry) {
+                let addr = generateLocationCode(locations[0]).replaceAll("/", "-").replace("-", "");
+                saveFile(errors, `./error/${getTodayDate()}/${addr}.json`);
             }
         }
         saveFile(finalTpssData, `./result/${getTodayDate()}/${province.nama}.json`);
